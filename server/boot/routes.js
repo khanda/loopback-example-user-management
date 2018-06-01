@@ -43,9 +43,14 @@ module.exports = function(app) {
         }
         return;
       }
+      // login successfully
+      res.statusCode = 200;
       res.send({
-        email: req.body.email,
-        accessToken: token.id
+        token: token.id,
+        id: token.userId,
+        userName: req.body.email,
+        role: '',
+        roleDescription: '',
       });
     });
   });
