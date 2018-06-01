@@ -2,7 +2,12 @@
   "name": "user",
   "base": "User",
   "idInjection": true,
-  "properties": {},
+  "properties": {
+    "role": {
+      "type": "string",
+      "required": true
+    }
+  },
   "restrictResetPasswordTokenScope": true,
   "emailVerificationRequired": true,
   "validations": [],
