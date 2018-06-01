@@ -1,0 +1,35 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+"mysqlDs": {
+    "host": "localhost",
+    "port": 3306,
+    "url": "",
+    "database": "loopback_rest",
+    "password": "root",
+    "name": "mysqlDs",
+    "user": "root",
+    "connector": "mysql"
+  },
+ "emailDs": {
+    "name": "emailDs",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "smtp.gmail.com",
+        "secure": true,
+        "port": 465,
+        "tls": {
+          "rejectUnauthorized": false
+        },
+        "auth": {
+          "user": "quyendq.dtag@gmail.com",
+          "pass": "nhattien123"
+        }
+      }
+    ]
+  }
+}
