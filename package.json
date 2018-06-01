@@ -1,5 +1,5 @@
 {
-  "name": "loopback-example-user-management",
+  "name": "ms-nodejs-api",
   "version": "1.0.0",
   "description": "Modern School",
   "main": "server/server.js",
