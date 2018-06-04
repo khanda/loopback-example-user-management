@@ -2,23 +2,23 @@
   "name": "user",
   "base": "User",
   "idInjection": true,
+  "restrictResetPasswordTokenScope": true,
+  "emailVerificationRequired": false,
   "properties": {
     "role": {
       "type": "string",
-      "required": true
+      "required": false
     }
   },
-  "restrictResetPasswordTokenScope": true,
-  "emailVerificationRequired": true,
   "validations": [],
   "relations": {},
   "acls": [
     {
-      "principalType": "ROLE",
-      "principalId": "$everyone",
       "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
       "permission": "ALLOW"
     }
   ],
-  "methods": []
+  "methods": {}
 }

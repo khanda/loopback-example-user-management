@@ -1,9 +1,6 @@
 /**
  * Created by quyen on 31/05/2018.
  */
-/**
- * Created by quyen on 31/05/2018.
- */
 'use strict';
 
 module.exports = function (app) {
@@ -20,8 +17,9 @@ module.exports = function (app) {
       throw err;
     }
     console.log('All tables [' + mySqlModels + '] updated in ', mysqlDataSource.adapter.name);
-    // mysqlDataSource.disconnect();
+
   });
+
 
   function checkNotInMySqlDs(model) {
     return notInMysqlDsModels.indexOf(model) < 0;

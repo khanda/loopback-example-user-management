@@ -8,9 +8,15 @@ var config = require('../../server/config.json');
 var path = require('path');
 var senderAddress = "noreply@loopback.com"; //Replace this address with your actual address
 
+module.exports = function(app) {
+  delete app.models.user.validations.email;
+  delete app.models.User.validations.email;
+};
+
 module.exports = function (User) {
   //send verification email after registration
   User.afterRemote('create', function (context, user, next) {
+    console.log(user);
     var options = {
       type: 'email',
       to: user.email,

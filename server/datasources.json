@@ -3,7 +3,7 @@
     "name": "db",
     "connector": "memory"
   },
-"mysqlDs": {
+  "mysqlDs": {
     "host": "localhost",
     "port": 3306,
     "url": "",
@@ -13,7 +13,7 @@
     "user": "root",
     "connector": "mysql"
   },
- "emailDs": {
+  "emailDs": {
     "name": "emailDs",
     "connector": "mail",
     "transports": [
