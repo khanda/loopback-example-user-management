@@ -8,7 +8,7 @@ var config = require('../../server/config.json');
 var path = require('path');
 var senderAddress = "noreply@loopback.com"; //Replace this address with your actual address
 
-module.exports = function(app) {
+module.exports = function (app) {
   delete app.models.user.validations.email;
   delete app.models.User.validations.email;
 };
@@ -16,39 +16,41 @@ module.exports = function(app) {
 module.exports = function (User) {
   //send verification email after registration
   User.afterRemote('create', function (context, user, next) {
-    console.log(user);
-    var options = {
-      type: 'email',
-      to: user.email,
-      from: senderAddress,
-      subject: 'Thanks for registering.',
-      template: path.resolve(__dirname, '../../server/views/verify.ejs'),
-      redirect: '/verified',
-      user: user
-    };
+    return next();
+    // var options = {
+    //   type: 'email',
+    //   to: user.email,
+    //   from: senderAddress,
+    //   subject: 'Thanks for registering.',
+    //   template: path.resolve(__dirname, '../../server/views/verify.ejs'),
+    //   redirect: '/verified',
+    //   user: user
+    // };
 
-    user.verify(options, function (err, response) {
-      if (err) {
-        User.deleteById(user.id);
-        return next(err);
-      }
-      context.res.render('response', {
-        title: 'Signed up successfully',
-        content: 'Please check your email and click on the verification link ' +
-          'before logging in.',
-        redirectTo: '/',
-        redirectToLinkText: 'Log in'
-      });
-    });
+    // user.verify(options, function (err, response) {
+    //skip check verify email
+
+    // if (err) {
+    //   User.deleteById(user.id);
+    //   return next(err);
+    // }
+    // context.res.render('response', {
+    //   title: 'Signed up successfully',
+    //   content: 'Please check your email and click on the verification link ' +
+    //     'before logging in.',
+    //   redirectTo: '/',
+    //   redirectToLinkText: 'Log in'
+    // });
+    // });
   });
 
   // Method to render
   User.afterRemote('prototype.verify', function (context, user, next) {
     context.res.render('response', {
       title: 'A Link to reverify your identity has been sent ' +
-        'to your email successfully',
+      'to your email successfully',
       content: 'Please check your email and click on the verification link ' +
-        'before logging in',
+      'before logging in',
       redirectTo: '/',
       redirectToLinkText: 'Log in'
     });
@@ -58,7 +60,7 @@ module.exports = function (User) {
   User.on('resetPasswordRequest', function (info) {
     var url = 'http://' + config.host + ':' + config.port + '/reset-password';
     var html = 'Click <a href="' + url + '?access_token=' +
-      info.accessToken.id + '">here</a> to reset your password';
+        info.accessToken.id + '">here</a> to reset your password';
 
     User.app.models.Email.send({
       to: info.email,
